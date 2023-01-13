@@ -1,0 +1,15 @@
+{
+  "autoload": {
+    "psr-4": {
+      "WKaba\\ProductPage\\": "src/"
+    }
+  },
+  "require": {
+    "php": "^7.0",
+    "ext-pdo": "*",
+    "doctrine/orm": "^2.11.0",
+    "doctrine/annotations": "1.13.2",
+    "doctrine/dbal": "^3.2",
+    "symfony/cache": "^5.4"
+  }
+}
