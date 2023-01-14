@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\DiscriminatorColumn(name="discriminator", type="string")
  * @ORM\DiscriminatorMap({"product" = "Product", "dvd" = "DVD", "book" = "Book", "furniture" = "Furniture"})
  */
-abstract class Product
+abstract class Product implements \JsonSerializable
 {
     /**
      * @ORM\Id
@@ -36,30 +36,67 @@ abstract class Product
      */
     protected float $price;
 
+    /**
+     * @param string $productSKU
+     * @param string $name
+     * @param float $price
+     */
+    public function __construct(string $productSKU, string $name, float $price)
+    {
+        $this->productSKU = $productSKU;
+        $this->name = $name;
+        $this->price = $price;
+    }
+
+    /**
+     * @return string
+     */
     public function getProductSKU(): string
     {
         return $this->productSKU;
     }
 
+    /**
+     * @param string $productSKU
+     */
+    public function setProductSKU(string $productSKU): void
+    {
+        $this->productSKU = $productSKU;
+    }
+
+    /**
+     * @return string
+     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    public function setName($name): void
+    /**
+     * @param string $name
+     */
+    public function setName(string $name): void
     {
         $this->name = $name;
     }
 
+    /**
+     * @return float
+     */
     public function getPrice(): float
     {
         return $this->price;
     }
 
-    public function setPrice($price): void
+    /**
+     * @param float $price
+     */
+    public function setPrice(float $price): void
     {
         $this->price = $price;
     }
+
+
 
 
 }

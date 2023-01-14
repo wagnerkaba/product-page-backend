@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace WKaba\ProductPage\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -13,10 +13,10 @@ class Book extends Product
      */
     private float $weight;
 
-    public function __construct(int $productSKU, string $name, $price, $size)
+    public function __construct(string $productSKU, string $name, float $price, float $weight)
     {
         parent::__construct($productSKU, $name, $price);
-        $this->size = $size;
+        $this->weight = $weight;
     }
 
     /**
@@ -36,5 +36,13 @@ class Book extends Product
     }
 
 
-
+    public function jsonSerialize()
+    {
+        return [
+            'sku' => $this->getProductSKU(),
+            'name' => $this->getName(),
+            'price' => $this->getPrice(),
+            'weight' => $this->getWeight()
+        ];
+    }
 }

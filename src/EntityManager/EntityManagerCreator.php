@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace WKaba\ProductPage\EntityManager;
 
@@ -22,7 +23,7 @@ class EntityManagerCreator
             'path' => __DIR__ . '/../../db.sqlite',
         ], $config);
 
-        // obtaining the entity manager
+        // obtaining the Entity manager
         return new EntityManager($connection, $config);
     }
 
