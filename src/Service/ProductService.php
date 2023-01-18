@@ -30,6 +30,22 @@ class ProductService
         return $productsList;
     }
 
+    public function removeBySKU(string $sku)
+    {
+        $product = $this->entityManager->getRepository(Product::class)->findOneBy(['productSKU'=>$sku]);
+        if($product){
+            $this->entityManager->remove($product);
+            $this->entityManager->flush();
+        }
+    }
+
+    public function massDelete(array $products)
+    {
+        foreach ($products as $product){
+            $this->removeBySKU($product);
+        }
+    }
+
 
 
 
