@@ -8,8 +8,8 @@ use WKaba\ProductPage\EntityManager\EntityManagerCreator;
 use WKaba\ProductPage\Controller\Error404Controller;
 use WKaba\ProductPage\Controller\AddProductController;
 
-require_once __DIR__ . '/../vendor/autoload.php';
-require_once __DIR__ . '/../src/CorsHandle/CorsHandle.php';
+require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/src/CorsHandle/CorsHandle.php';
 
 $cors = new CorsHandle();
 $cors->handle();
@@ -20,7 +20,7 @@ try {
     exit("Sorry, there is an error in the database configuration.");
 }
 
-$routes = require_once __DIR__ . '/../config/routes.php';
+$routes = require_once __DIR__ . '/config/routes.php';
 
 $pathInfo = $_SERVER['PATH_INFO'] ?? '/';
 $httpMethod = $_SERVER['REQUEST_METHOD'];
