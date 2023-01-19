@@ -14,9 +14,14 @@ class ListProductsController implements Controller
     }
     public function run(): void
     {
-        $productService = new ProductService($this->entityManager);
-        $productsList = $productService->listAll();
-        echo json_encode($productsList);
+        try{
+            $productService = new ProductService($this->entityManager);
+            $productsList = $productService->listAll();
+            echo json_encode($productsList);
+        } catch (\Exception $e){
+            http_response_code(503);
+        }
+
 
     }
 }

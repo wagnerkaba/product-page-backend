@@ -13,8 +13,12 @@ require_once __DIR__ . '/../src/CorsHandle/CorsHandle.php';
 
 $cors = new CorsHandle();
 $cors->handle();
-
-$entityManager = EntityManagerCreator::createEntityManager();
+try {
+    $entityManager = EntityManagerCreator::createEntityManager();
+} catch (Exception $e){
+    http_response_code(503);
+    exit("Sorry, there is an error in the database configuration.");
+}
 
 $routes = require_once __DIR__ . '/../config/routes.php';
 

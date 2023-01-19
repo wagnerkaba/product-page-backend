@@ -23,12 +23,18 @@ class AddProductController implements Controller
         $request = file_get_contents('php://input');
         $data = json_decode($request, true);
 
-        $factory = new ObjectFactory();
+        try {
+            $factory = new ObjectFactory();
 
-        $product = $factory->createObject($data['type'], $data);
+            $product = $factory->createObject($data['type'], $data);
 
-        $productService = new ProductService($this->entityManager);
-        $productService->addProduct($product);
-        http_response_code(201);
+            $productService = new ProductService($this->entityManager);
+            $productService->addProduct($product);
+            http_response_code(201);
+
+        } catch (\Exception $e){
+            http_response_code(500);
+        }
+
     }
 }

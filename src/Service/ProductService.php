@@ -26,7 +26,6 @@ class ProductService
     public function listAll(): array
     {
         $productsList = $this->entityManager->getRepository(Product::class)->findAll();
-
         return $productsList;
     }
 

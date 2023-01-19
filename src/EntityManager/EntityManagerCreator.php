@@ -11,6 +11,7 @@ class EntityManagerCreator
 {
     public static function createEntityManager(): EntityManager
     {
+
         // Create a simple "default" Doctrine ORM configuration for Annotations
         $config = ORMSetup::createAnnotationMetadataConfiguration(
             [__DIR__ . '/..'],
