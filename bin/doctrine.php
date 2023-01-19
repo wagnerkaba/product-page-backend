@@ -13,8 +13,14 @@ use WKaba\ProductPage\EntityManager\EntityManagerCreator;
 require_once __DIR__ . '/../vendor/autoload.php';
 
 // replace with mechanism to retrieve EntityManager in your app
-$entityManager = EntityManagerCreator::createEntityManager();
+$entityManagerCreator = new \Doctrine\ORM\EntityManager();
 
+// replace with database params
+$entityManagerParams = [
+    'url' => 'pdo-sqlite:/db.sqlite'
+];
+
+$entityManager = $entityManagerCreator->createEntityManager($entityManagerParams);
 
 ConsoleRunner::run(
     new SingleManagerProvider($entityManager)

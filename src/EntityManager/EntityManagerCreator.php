@@ -9,7 +9,7 @@ use Doctrine\ORM\ORMSetup;
 
 class EntityManagerCreator
 {
-    public static function createEntityManager(): EntityManager
+    public function createEntityManager(array $driverManagerParams): EntityManager
     {
 
         // Create a simple "default" Doctrine ORM configuration for Annotations
@@ -19,10 +19,9 @@ class EntityManagerCreator
         );
 
         // configuring the database connection
-        $connection = DriverManager::getConnection([
-            'driver' => 'pdo_sqlite',
-            'path' => __DIR__ . '/../../db.sqlite',
-        ], $config);
+        $connection = DriverManager::getConnection($driverManagerParams, $config);
+
+
 
         // obtaining the Entity manager
         return new EntityManager($connection, $config);
