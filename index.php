@@ -14,7 +14,7 @@ require_once __DIR__ . '/src/CorsHandle/CorsHandle.php';
 $entityManagerCreator = new EntityManagerCreator();
 
 // load database url for entity manager
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv\Dotenv::createImmutable(realpath(__DIR__));
 $dotenv->load();
 $databaseURL = $_ENV['URL'];
 
