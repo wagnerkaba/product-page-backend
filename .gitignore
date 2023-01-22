@@ -2,3 +2,5 @@ vendor/
 teste/
 db.sqlite
 .env
+add-product/
+Gambi.php

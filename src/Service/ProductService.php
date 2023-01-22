@@ -1,12 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WKaba\ProductPage\Service;
 
 use Doctrine\ORM\EntityManager;
+use Exception;
 use WKaba\ProductPage\Entity\Product;
-
-
-require_once __DIR__ . '/../../vendor/autoload.php';
 
 class ProductService
 {
@@ -19,20 +19,23 @@ class ProductService
 
     public function addProduct(Product $product): void
     {
-        $this->entityManager->persist($product);
-        $this->entityManager->flush();
+        try {
+            $this->entityManager->persist($product);
+            $this->entityManager->flush();
+        } catch (Exception $exception) {
+            echo $exception;
+        }
     }
 
     public function listAll(): array
     {
-        $productsList = $this->entityManager->getRepository(Product::class)->findAll();
-        return $productsList;
+        return $this->entityManager->getRepository(Product::class)->findAll();
     }
 
     public function removeBySKU(string $sku)
     {
-        $product = $this->entityManager->getRepository(Product::class)->findOneBy(['productSKU'=>$sku]);
-        if($product){
+        $product = $this->entityManager->getRepository(Product::class)->findOneBy(['productSKU' => $sku]);
+        if ($product) {
             $this->entityManager->remove($product);
             $this->entityManager->flush();
         }
@@ -40,12 +43,8 @@ class ProductService
 
     public function massDelete(array $products)
     {
-        foreach ($products as $product){
+        foreach ($products as $product) {
             $this->removeBySKU($product);
         }
     }
-
-
-
-
 }

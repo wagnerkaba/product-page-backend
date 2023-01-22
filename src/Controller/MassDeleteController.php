@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WKaba\ProductPage\Controller;
 
 use Doctrine\ORM\EntityManager;
@@ -19,6 +21,5 @@ class MassDeleteController implements Controller
         $products = json_decode($request, true);
         $productService = new ProductService($this->entityManager);
         $productService->massDelete($products['skus']);
-
     }
 }

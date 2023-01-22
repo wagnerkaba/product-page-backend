@@ -1,10 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WKaba\ProductPage\CorsHandle;
 
 class CorsHandle
 {
-    public function handle(){
+    public function handle()
+    {
+
         // Allow from any origin
         if (isset($_SERVER['HTTP_ORIGIN'])) {
             // Decide if the origin in $_SERVER['HTTP_ORIGIN'] is one
@@ -16,16 +20,16 @@ class CorsHandle
 
         // Access-Control headers are received during OPTIONS requests
         if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
-
-            if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
+            if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD'])) {
                 // may also be using PUT, PATCH, HEAD etc
-                header("Access-Control-Allow-Methods: GET, POST, OPTIONS, DELETE");
+                header('Access-Control-Allow-Methods: GET, POST, OPTIONS, DELETE');
+            }
 
-            if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
+            if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS'])) {
                 header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+            }
 
             exit(0);
         }
     }
-
 }

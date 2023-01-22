@@ -1,6 +1,9 @@
 <?php
+
 declare(strict_types=1);
+
 namespace WKaba\ProductPage\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -8,7 +11,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Furniture extends Product
 {
-
     /**
      * @ORM\Column(type="integer")
      */
@@ -28,7 +30,6 @@ class Furniture extends Product
         $this->height = $height;
         $this->width = $width;
         $this->length = $length;
-
     }
 
     /**
@@ -80,7 +81,7 @@ class Furniture extends Product
     }
 
 
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return [
             'sku' => $this->getProductSKU(),

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace WKaba\ProductPage\EntityManager;
@@ -26,5 +27,4 @@ class EntityManagerCreator
         // obtaining the Entity manager
         return new EntityManager($connection, $config);
     }
-
 }

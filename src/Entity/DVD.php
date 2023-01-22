@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace WKaba\ProductPage\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -9,7 +11,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class DVD extends Product
 {
-
     /**
      * @ORM\Column(type="decimal", precision=10, scale=2)
      */
@@ -32,7 +33,7 @@ class DVD extends Product
     }
 
 
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return [
             'sku' => $this->getProductSKU(),

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace WKaba\ProductPage\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 
 /**
  * @ORM\Entity
@@ -12,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\DiscriminatorColumn(name="discriminator", type="string")
  * @ORM\DiscriminatorMap({"product" = "Product", "dvd" = "DVD", "book" = "Book", "furniture" = "Furniture"})
  */
-abstract class Product implements \JsonSerializable
+abstract class Product implements JsonSerializable
 {
     /**
      * @ORM\Id
@@ -39,7 +40,7 @@ abstract class Product implements \JsonSerializable
     /**
      * @param string $productSKU
      * @param string $name
-     * @param float $price
+     * @param float  $price
      */
     public function __construct(string $productSKU, string $name, float $price)
     {
@@ -95,8 +96,4 @@ abstract class Product implements \JsonSerializable
     {
         $this->price = $price;
     }
-
-
-
-
 }

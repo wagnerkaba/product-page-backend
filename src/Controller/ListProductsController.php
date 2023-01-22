@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WKaba\ProductPage\Controller;
 
 use Doctrine\ORM\EntityManager;
@@ -20,6 +22,5 @@ class ListProductsController implements Controller
         $productService = new ProductService($this->entityManager);
         $productsList = $productService->listAll();
         echo json_encode($productsList);
-
     }
 }
